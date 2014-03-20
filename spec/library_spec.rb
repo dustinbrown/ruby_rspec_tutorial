@@ -56,4 +56,29 @@ describe "Library object" do
     lib.get_books_in_category(:development).length.should == 2
   end
 
+  it "accepts new books" do
+    #@lib.add_book( Book.new("Designing for the Web", "Mark Boulton", :design) ) #block example
+    #@lib.get_book("Designing for the Web").should be_an_instance_of Book #block example
+    lib.add_book( Book.new("Designing for the Web", "Mark Boulton", :design) )
+    lib.get_book("Designing for the Web").should be_an_instance_of Book
+  end
+
+  it "saves the library" do
+    books = lib.books.map { |book| book.title }
+    lib.save
+    #books.class.should == Array
+
+    lib2 = Library.new lib_obj
+    #lib2 = Library.new "books.yml" #blocks example
+    books2 = lib2.books.map { |book| book.title }
+    books.should eql books2
+
+    #blocks example
+    #books = @lib.books.map { |book| book.title }
+    #@lib.save
+    #lib2 = Library.new "books.yml"
+    #books2 = lib2.books.map { |book| book.title }
+    #books.should eql books2
+  end
+
 end
