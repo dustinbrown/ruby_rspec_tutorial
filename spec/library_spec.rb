@@ -26,7 +26,8 @@ describe "Library object" do
     #    end
     #end
 
-    let(:lib5) { Library.new lib_obj }
+    let(:lib) { Library.new lib_obj }
+    let(:lib1) { Library.new }
 
     #Using before block
     #before :each do
@@ -37,16 +38,22 @@ describe "Library object" do
 
       context "with no parameters" do
           it "has no books" do
-              lib = Library.new
+              #lib = Library.new #also works block example
               #lib.should have(0).books #also works block example
-              lib.books.length.should == 0
+              lib1.books.length.should == 0
           end
       end
       context "with a yaml file parameter" do
           it "has five books" do
               #@lib.should have(5).books #also works with block example
-              lib5.books.length.should == 5
+              lib.books.length.should == 5
           end
       end
   end
+
+  it "returns all the books in a given category" do
+    #@lib.get_books_in_category(:development).length.should == 2 # block example
+    lib.get_books_in_category(:development).length.should == 2
+  end
+
 end
